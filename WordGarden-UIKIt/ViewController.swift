@@ -36,8 +36,16 @@ class ViewController: UIViewController {
     
     // event: Editing changes
     @IBAction func guessLeterFieldChanges(_ sender: UITextField) {
-        let text = guessedLetterField.text!
-        guessLetterButton.isEnabled = !(text.isEmpty)
+        sender.text = String(sender.text?.last ?? " ").trimmingCharacters(in: .whitespaces)
+        guessLetterButton.isEnabled = !sender.text!.isEmpty
+        
+//        if let lastLetter = guessedLetterField.text!.last {
+//            guessedLetterField.text = String(lastLetter)
+//            guessLetterButton.isEnabled = true
+//        } else {
+//            guessedLetterField.text = String("")
+//            guessLetterButton.isEnabled = false
+//        }
     }
     
     // event: Touch Up Inside
