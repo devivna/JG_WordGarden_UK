@@ -23,13 +23,38 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let text = guessedLetterField.text!
+        guessLetterButton.isEnabled = !(text.isEmpty)
     }
 
+    // event: Primary Aciton Triggered
+    @IBAction func doneKeyPressed(_ sender: UITextField) {
+        // dismiss the keyboard when press the Done on the keyboard
+        updateUIAfterGuess()
+    }
+    
+    // event: Editing changes
+    @IBAction func guessLeterFieldChanges(_ sender: UITextField) {
+        let text = guessedLetterField.text!
+        guessLetterButton.isEnabled = !(text.isEmpty)
+    }
+    
+    // event: Touch Up Inside
     @IBAction func guessLetterButtonPressed(_ sender: UIButton) {
+        // dismiss the keyboard when press the button on the screen
+        updateUIAfterGuess()
     }
     
     @IBAction func playAgainButtonPressed(_ sender: UIButton) {
+        updateUIAfterGuess()
     }
+    
+    func updateUIAfterGuess() {
+        guessedLetterField.resignFirstResponder()
+        guessedLetterField.text = ""
+        guessLetterButton.isEnabled = false
+    }
+    
 }
 
